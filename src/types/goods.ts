@@ -1,4 +1,5 @@
-export interface Good{
-  name:string,
-  price: number,
+export interface Good {
+  id: string;
+  name: string;
+  price: number;
 }

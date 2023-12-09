@@ -4,13 +4,21 @@ import type { Good } from '@/types/goods';
 const url  = 'http://localhost:3000';
 
 export const useGoodsService = () => {
+  const convertToGood = (obj: any): Good => {
+    return {
+      id: obj._id,
+      name: obj.name,
+      price: obj.price,
+    };
+  };
+
   const getAllGoods = async (): Promise<Good[]> => {
     const result = await axios.get(`${url}/goods`);
-    return result.data as Good[];
+    return result.data.map((obj: any) => convertToGood(obj));
   };
-  const getGood = async (): Promise<Good> => {
-    const result = await axios.get(`${url}/goods/1`);
-    return result.data as Good;
+  const getGood = async (id: string): Promise<Good> => {
+    const result = await axios.get(`${url}/goods/get/${id}`);
+    return convertToGood(result.data);
   };
   const postGood = async (name:string, price:number): Promise<string | Error> => {
     try {

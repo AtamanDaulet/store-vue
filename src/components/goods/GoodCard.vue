@@ -1,20 +1,21 @@
 <template>
-  <div>
-    <div>{{ good }}</div>
+  <div class="border border-gray-200 rounded-lg shadow py-2 px-4 hover:bg-gray-100">
+    <router-link
+      :to="{ name: 'good', params: { id: good.id } }"
+      class="hover:text-blue-400"
+    >
+      <h3 class="text-2xl font-bold">{{ props.good.name }}</h3>
+    </router-link>
+    <span>{{ props.good.price }}$</span>
   </div>
 </template>
 
 <script setup lang="ts">
-  import { ref, onMounted } from 'vue';
-  import { useGoodsService } from '@/service/goods.service';
-  import type { Good } from '@/types/goods';
+import type { Good } from '@/types/goods';
 
-  const goodsService = useGoodsService(); 
-  const good = ref<Good>();
-
-  onMounted(async () => {    
-    good.value = await goodsService.getGood();
-  });
+const props = defineProps<{
+  good: Good;
+}>();
 </script>
 
 <style scoped></style>
