@@ -1,15 +1,15 @@
 <template>
   <div>
-    <h1 class="m-8">Home view</h1>
+    <!-- <h1 class="m-8">Home view</h1> -->
     <!-- <GoodsList></GoodsList> -->
-    <br />
+    <!-- <br />
     <div>
       <label for="name">Name</label>
       <input type="text" id="name" v-model="name" /> <br />
       <label for="price">Price</label>
       <input type="number" id="price" v-model.number="price" /> <br />
       <button type="button" @click="postGood">Submit</button>
-    </div>
+    </div> -->
     <goods-list></goods-list>
   </div>
 </template>
