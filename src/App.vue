@@ -1,22 +1,17 @@
 <template>
-  
-        <!-- <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink> -->
-  <div class="wraper">
-    <RouterView />
+  <div class="bg-gray-50 h-screen">
+    <base-header></base-header>
+    <div class="mx-auto max-w-screen-xl mt-8">
+      <RouterView />
+    </div>
   </div>
-
 </template>
 
 <script setup lang="ts">
-
+import BaseHeader from './components/BaseHeader.vue';
 </script>
 
 <style scoped>
-.wraper{
-  width: 1200px;
-  margin: 0 auto;
-  border: 2px red solid;
-}
+
   
 </style>
