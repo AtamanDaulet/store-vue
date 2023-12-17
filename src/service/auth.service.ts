@@ -1,17 +1,28 @@
-import axios from 'axios';
+import axios from '@/service/service';
 
-import type { Token } from '@/types/user';
+import type { TokenDTO, UserDTO } from '@/types/user';
 
-const url = 'http://localhost:3000/auth';
+const MAIN_URL = 'http://localhost:3000';
+const AUTH_URL = MAIN_URL + '/auth';
 
 export const useAuthService = () => {
-  const logIn = async (email: string, password: string): Promise<Token | Error> => {
+  const logIn = async (email: string, password: string): Promise<TokenDTO | Error> => {
     try {
-      return await axios.post(`${url}/login`, { email, password });
+      const result = await axios.post(`${AUTH_URL}/login`, { email, password });
+      return result.data;
     } catch (error) {
       return error as Error;
     }
   };
 
-  return { logIn };
+  const getUserInfo = async (): Promise<UserDTO | Error> => {
+    try {
+      const result = await axios.get(`${MAIN_URL}/get_user_info`);
+      return result.data;
+    } catch (e) {
+      return e as Error;
+    }
+  }
+
+  return { logIn, getUserInfo };
 };

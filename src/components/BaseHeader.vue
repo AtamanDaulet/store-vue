@@ -4,12 +4,18 @@
       <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
         <span class="flex items-center">
           <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
-            >Flowbite</span
+            >istore</span
           >
         </span>
-        <div class="flex items-center lg:order-2">
-          <link-btn :to="{ name: 'login' }">Log In</link-btn>
-          <link-btn :to="{ name: 'signup' }">Sign Up</link-btn>
+        <div class="lg:order-2">
+          <div v-if="authStore.getUserInfo()" class="flex gap-2 items-center">
+            <span>{{ authStore.getUserInfo()?.email }}</span>
+            <custom-btn @click="logout">Log out</custom-btn>
+          </div>
+          <div v-else class="flex items-center">
+            <link-btn :to="{ name: 'login' }">Log In</link-btn>
+            <link-btn :to="{ name: 'signup' }">Sign Up</link-btn>
+          </div>
         </div>
         <div
           class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
@@ -67,7 +73,21 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router';
+
+import { useAuthStore } from '@/stores/auth';
+
+import CustomBtn from './CustomBtn.vue';
 import LinkBtn from './LinkBtn.vue';
+
+const router = useRouter();
+
+const authStore = useAuthStore();
+
+const logout = () => {
+  authStore.logout();
+  router.push({ name: 'home' });
+};
 </script>
 
 <style scoped></style>

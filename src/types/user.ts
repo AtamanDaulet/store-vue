@@ -1,4 +1,12 @@
 export interface Token {
-  userId: string;
   token: string;
 };
+
+export interface TokenDTO {
+  status: number;
+  data?: Token;
+}
+
+export interface UserDTO {
+  email: string;
+}

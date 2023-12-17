@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '@/service/service';
 import type { Good } from '@/types/goods';
 
 const url = 'http://localhost:3000';
